@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.th3</groupId>
     <artifactId>bes-products</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>bes-products</name>
     <description>back-end service to manage product data</description>
     <url/>
@@ -73,6 +73,7 @@
     </dependencies>
 
     <build>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
