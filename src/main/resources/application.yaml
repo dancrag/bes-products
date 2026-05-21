@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /bes-products
+
+spring:
+  application:
+    name: bes-products
+
+  datasource:
+    url: jdbc:mysql://db-fika-dev.czywa0yioep8.us-east-2.rds.amazonaws.com:3306/fika_db
+    username: dancrag
+    password: Gc9RrWloSNXEBRcvjTHN
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
