@@ -4,26 +4,17 @@ env:
   variables:
     AWS_DEFAULT_REGION: "us-east-2"
     AWS_ACCOUNT_ID: "829676085607"
-    IMAGE_REPO_NAME: "fika/bes-products"
-    CONTAINER_NAME: "bes-products"
+    IMAGE_REPO_NAME: "simple-docker-service-064a2b2a4bd5"
+    CONTAINER_NAME: "simple-docker-service-064a2b2a4bd5"
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto17 # Asegura que CodeBuild tenga Java 17 instalado
   pre_build:
     commands:
-      - echo Iniciando sesión en Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
-  build:
-    commands:
-      - echo Construyendo la imagen de Docker...
-      - docker build -t $IMAGE_REPO_NAME:latest -f ./Dockerfile .
-      - docker tag $IMAGE_REPO_NAME:latest $REPOSITORY_URI:latest
-  post_build:
-    commands:
-      - echo Subiendo la imagen a ECR...
-      - docker push $REPOSITORY_URI:latest
-      - echo Escribiendo archivo imagedefinitions.json para ECS...
-      - printf '[{"name":"%s","imageUri":"%s"}]' "$CONTAINER_NAME" "$REPOSITORY_URI:latest" > imagedefinitions.json
+      - echo Compilando el proyecto Maven...
+      - mvn clean package -DskipTests # Esto genera la > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
