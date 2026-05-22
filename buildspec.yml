@@ -5,7 +5,7 @@ env:
     AWS_DEFAULT_REGION: "us-east-2"
     AWS_ACCOUNT_ID: "829676085607"
     IMAGE_REPO_NAME: "fika/bes-products"
-    CONTAINER_NAME: "fika/bes-products"
+    CONTAINER_NAME: "bes-products"
 
 phases:
   install:
